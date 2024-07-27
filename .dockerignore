@@ -1,0 +1,24 @@
+node_modules
+
+# Ignore file yang dihasilkan saat development atau build
+/build
+/dist
+/.pnp
+.pnp.js
+
+# Ignore file debug atau log
+npm-debug.log*
+
+# Ignore file yang diperlukan untuk development environment
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore cache dan temporary files
+*.pem
+*.lock
+*.pid
+*.log
+*.swp

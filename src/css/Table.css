@@ -1,0 +1,80 @@
+th,
+td {
+  width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+/* #tdName {
+  width: 150px;
+} */
+
+#tdNumber {
+  width: 30px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+
+tr {
+  position: relative;
+}
+
+tr::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; 
+  height: 0.2px; 
+  background-color: black; 
+}
+
+.white-background {
+  background-color: white; 
+}
+
+
+.modalH-background {
+  background-color: #594545; 
+}
+
+.modalT-background {
+  background-color: #F3EEEA; 
+}
+
+.thead-no-rounded {
+  border-radius: 0; 
+}
+
+.center-table {
+  margin: 0 auto;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); 
+  backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.blur {
+  backdrop-filter: blur(4px); /* Atur level blur sesuai keinginan Anda */
+}
+

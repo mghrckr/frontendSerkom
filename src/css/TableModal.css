@@ -1,0 +1,116 @@
+/* Table.css */
+
+/* Style for scrollable table container */
+.relative {
+    position: relative;
+  }
+  
+  .overflow-auto {
+    overflow: auto;
+  }
+
+  #tdNumber {
+    width: 30px;
+  }
+  
+  /* Style for the table itself */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Style for table header */
+  th {
+    background-color: #f3f4f6;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  /* Style for table body */
+  td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+  }
+  
+  /* Style for table header text */
+  th,
+  td {
+    text-align: left;
+  }
+  
+  /* Style for the first column */
+  th:first-child,
+  td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #f3f4f6;
+  }
+  
+  /* Style for the rest of the first row (header) */
+  tr:first-child th:first-child {
+    z-index: 3;
+  }
+
+  tr th:nth-child(2) {
+    z-index: 3;
+  }
+  
+  /* Style for the rest of the first column */
+  tr td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #f3f4f6;
+  }
+  
+  /* Style for table body background color */
+  tbody {
+    background-color: white;
+  }
+  
+  /* Style for table body hover effect */
+  tbody tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  th:first-child,
+td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: #f3f4f6;
+  width: 50px; /* Menentukan lebar kolom Nomor */
+  padding: 4px; /* Menyesuaikan padding */
+}
+
+/* Style for the rest of the first column */
+tr td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: #f3f4f6;
+  width: 50px; /* Menentukan lebar kolom Nomor */
+  padding: 4px; /* Menyesuaikan padding */
+}
+
+tbody td:nth-child(2) {
+  background-color: #ffffff; /* Warna latar belakang agar tampak kontras */
+}
+
+/* Table.css */
+
+/* Style for Kolom Kedua */
+/* Style for Kolom Kedua */
+th:nth-child(2),
+td:nth-child(2) {
+  position: sticky;
+  left: 50px; /* Menyesuaikan lebar kolom Nomor */
+  background-color: #f3f4f6; /* Warna latar belakang agar tampak kontras */
+  top: 0; /* Menentukan posisi saat discroll ke atas */
+}
+.header {
+  position: sticky;
+  top: 0;
+}
+
+
