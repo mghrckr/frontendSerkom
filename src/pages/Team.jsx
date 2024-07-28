@@ -75,56 +75,58 @@ const Team = () => {
           </div>
         </div>
       </div>
-      <div className=" flex justify-center">
+      <div className=" flex justify-center overflow-x-auto">
+        <div className="flex">
 
-        <div className="flex justify-center mr-4">
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
-            <img
-              className="object-cover w-56 h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/3783255/pexels-photo-3783255.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt='"Oliver Aguilerra"'
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                PIC
-              </p>
-              <p className="mb-4 text-xs text-gray-100">PJ Teknik dan Tenaga Teknik</p>
+          <div className="flex-shrink-0 mr-4">
+            <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
+              <img
+                className="object-cover w-[160px] sm:w-[210px] h-56 md:h-64 xl:h-80"
+                src="https://images.pexels.com/photos/3931603/pexels-photo-3931603.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                alt='"Oliver Aguilerra"'
+              />
+              <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                <p className="mb-1 text-lg font-bold text-gray-100">
+                  PIC
+                </p>
+                <p className="mb-4 text-xs text-gray-100">PJ Teknik dan Tenaga Teknik</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center mr-4">
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-              alt='"Oliver Aguilerra"'
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                PIC
-              </p>
-              <p className="mb-4 text-xs text-gray-100">General Admin & Keuangan</p>
+          <div className="flex-shrink-0 mr-4">
+            <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
+              <img
+                className="object-cover w-full h-56 md:h-64 xl:h-80"
+                src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                alt='"Oliver Aguilerra"'
+              />
+              <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                <p className="mb-1 text-lg font-bold text-gray-100">
+                  PIC
+                </p>
+                <p className="mb-4 text-xs text-gray-100">General Admin & Keuangan</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center">
-          <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
-            <img
-              className="object-cover w-full h-56 md:h-64 xl:h-80"
-              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt='"Oliver Aguilerra"'
-            />
-            <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-              <p className="mb-1 text-lg font-bold text-gray-100">
-                PIC
-              </p>
-              <p className="mb-4 text-xs text-gray-100">IT System & Field</p>
+          <div className="flex-shrink-0 mr-4">
+            <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
+              <img
+                className="object-cover w-full h-56 md:h-64 xl:h-80"
+                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                alt='"Oliver Aguilerra"'
+              />
+              <div className="absolute inset-0 flex flex-col justify-center px-5 py-4 text-center transition-opacity duration-300 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                <p className="mb-1 text-lg font-bold text-gray-100">
+                  PIC
+                </p>
+                <p className="mb-4 text-xs text-gray-100">IT System & Field</p>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   );
