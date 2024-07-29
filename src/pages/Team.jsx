@@ -97,7 +97,7 @@ const Team = () => {
           <div className="flex-shrink-0 mr-4">
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
               <img
-                className="object-cover w-full h-56 md:h-64 xl:h-80"
+                className="object-cover w-[160px] sm:w-[210px] h-56 md:h-64 xl:h-80"
                 src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
                 alt='"Oliver Aguilerra"'
               />
@@ -113,7 +113,7 @@ const Team = () => {
           <div className="flex-shrink-0 mr-4">
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl w-full sm:w-auto">
               <img
-                className="object-cover w-full h-56 md:h-64 xl:h-80"
+                className="object-cover w-[160px] sm:w-[210px] h-56 md:h-64 xl:h-80"
                 src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt='"Oliver Aguilerra"'
               />
