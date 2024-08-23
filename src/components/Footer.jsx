@@ -1,4 +1,17 @@
+import { subscribeUser } from '@/store/actionCreators';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(subscribeUser(email));
+    setEmail('');
+  };
+
   return (
     <div className="bg-gray-900">
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -96,11 +109,13 @@ const Footer = () => {
             <span className="text-base font-medium tracking-wide text-gray-300">
               Subscribe for updates
             </span>
-            <form className="flex flex-col mt-4 md:flex-row">
+            <form className="flex flex-col mt-4 md:flex-row" onSubmit={handleSubmit}>
               <input
                 placeholder="Email"
                 required
-                type="text"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
               />
               <button

@@ -14,13 +14,39 @@ export function DataKomisi() {
   const listPeserta = useSelector((state) => state.listPeserta.listPeserta);
   const BASE_URL = `http://localhost:3001`;
   const [selectedEvent, setSelectedEvent] = useState('');
-  const [filteredListPeserta, setFilteredListPeserta] = useState(listPeserta);
+  const [filteredListPeserta, setFilteredListPeserta] = useState([]);
 
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchTrainingEvents());
     dispatch(fetchListPeserta());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedEvent) {
+      setFilteredListPeserta(listPeserta.filter(peserta => peserta.TrainingEventId === parseInt(selectedEvent)));
+    } else {
+      setFilteredListPeserta(listPeserta);
+    }
+  }, [selectedEvent, listPeserta]);
+
+  const filteredUsers = users.filter(user =>
+    listPeserta.some(peserta => peserta.UserId === user.id)
+  );
+
+  const getUserNameById = (userId) => {
+    const user = users.find(user => user.id === userId);
+    return user ? user.nama_lengkap : 'Unknown';
+  };
+
+  const getEventTitleById = (eventId) => {
+    const event = trainingEvents.find(event => event.id === eventId);
+    return event ? event.judul : 'Unknown Event';
+  };
+
+  const handleEventChange = (e) => {
+    setSelectedEvent(e.target.value);
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -44,28 +70,6 @@ export function DataKomisi() {
     }
   };
 
-  useEffect(() => {
-    if (selectedEvent) {
-      setFilteredListPeserta(listPeserta.filter(peserta => peserta.TrainingEventId === parseInt(selectedEvent)));
-    } else {
-      setFilteredListPeserta(listPeserta);
-    }
-  }, [selectedEvent, listPeserta]);
-
-  const getUserNameById = (userId) => {
-    const user = users.find(user => user.id === userId);
-    return user ? user.nama_lengkap : 'Unknown';
-  };
-
-  const getEventTitleById = (eventId) => {
-    const event = trainingEvents.find(event => event.id === eventId);
-    return event ? event.judul : 'Unknown Event';
-  };
-
-  const handleEventChange = (e) => {
-    setSelectedEvent(e.target.value);
-  };
-
   const downloadFilesForRow = async (peserta) => {
     const zip = new JSZip();
     const fileUrls = [
@@ -82,7 +86,7 @@ export function DataKomisi() {
         try {
           const response = await fetch(BASE_URL + fileUrl);
           const blob = await response.blob();
-          const fileName = fileUrl.split('/').pop(); // Extract file name from URL
+          const fileName = fileUrl.split('/').pop();
           zip.file(fileName, blob);
         } catch (error) {
           console.error(`Failed to fetch file: ${fileUrl}`, error);
@@ -98,6 +102,8 @@ export function DataKomisi() {
   const exportToExcel = () => {
     const data = filteredListPeserta.map(peserta => ({
       NAMA: getUserNameById(peserta.UserId),
+      EMAIL: users.find(user => user.id === peserta.UserId)?.email || 'Unknown',
+      NOMOR_HANDPHONE: users.find(user => user.id === peserta.UserId)?.nomor_hp || 'Unknown',
       EVENT: getEventTitleById(peserta.TrainingEventId),
       JENJANG: peserta.Jenjang,
       BIDANG: peserta.Bidang,
@@ -123,7 +129,6 @@ export function DataKomisi() {
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-          {/* Event Dropdown */}
           <div className="relative w-full ml-10 mb-4">
             <label htmlFor="event-filter" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Filter by Event
@@ -143,18 +148,16 @@ export function DataKomisi() {
             </select>
           </div>
 
-          {/* Export Button */}
           <div className="mb-4 ml-10">
             <Button color="green" onClick={exportToExcel}>
               Export to Excel
             </Button>
           </div>
 
-          {/* Table */}
           <table className="w-full min-w-[800px] table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                {["NAMA", "EVENT", "JENJANG", "BIDANG", "SUB BIDANG", "FORM PP,KTP,SK,IJAZAH", "ACTION"].map((el, index) => (
+                {["NAMA", "EMAIL", "NO HANDPHONE", "EVENT", "JENJANG", "BIDANG", "SUB BIDANG", "FORM PP,KTP,SK,IJAZAH", "ACTION"].map((el, index) => (
                   <th key={index} className="border-b border-blue-gray-50 py-3 px-5 text-center">
                     <Typography variant="small" className="text-[11px] font-bold uppercase text-blue-gray-400">
                       {el}
@@ -168,6 +171,12 @@ export function DataKomisi() {
                 <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" style={{ padding: '10px 5px' }}>
                     {getUserNameById(peserta.UserId)}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" style={{ padding: '10px 5px' }}>
+                    {users.find(user => user.id === peserta.UserId)?.email || 'Unknown'}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" style={{ padding: '10px 5px' }}>
+                    {users.find(user => user.id === peserta.UserId)?.nomor_hp || 'Unknown'}
                   </td>
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" style={{ padding: '10px 5px' }}>
                     {getEventTitleById(peserta.TrainingEventId)}
@@ -186,14 +195,8 @@ export function DataKomisi() {
                       Download All Files
                     </Button>
                   </td>
-                  <td
-                    className="px-6 py-4 text-center"
-                    style={{ padding: '10px 5px' }}
-                  >
-                    <Button
-                      color="red"
-                      onClick={() => handleDelete(peserta.id)}
-                    >
+                  <td className="px-6 py-4 text-center" style={{ padding: '10px 5px' }}>
+                    <Button color="red" onClick={() => handleDelete(peserta.id)}>
                       Hapus
                     </Button>
                   </td>

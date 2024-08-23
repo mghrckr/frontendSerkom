@@ -109,7 +109,7 @@ export const FormPeserta = () => {
     }
 
     try {
-      await dispatch(addListPeserta(pesertaData,userId,trainingEventId));
+      await dispatch(addListPeserta(pesertaData, userId, trainingEventId));
 
       Swal.fire({
         icon: 'success',
@@ -254,6 +254,9 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*PDF (max 600 kb)</strong>
+              </p>
             </div>
             <div className="mb-2">
               <label htmlFor="Ktp" className="inline-block mb-1 font-medium">
@@ -266,6 +269,9 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*PDF (max 600 kb)</strong>
+              </p>
             </div>
             <div className="mb-2">
               <label htmlFor="Ijazah" className="inline-block mb-1 font-medium">
@@ -278,6 +284,9 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*PDF (max 600 kb)</strong>
+              </p>
             </div>
             <div className="mb-2">
               <label htmlFor="pas_foto" className="inline-block mb-1 font-medium">
@@ -290,6 +299,9 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*3x4 background merah (max 600 kb)</strong>
+              </p>
             </div>
             <div className="mb-2">
               <label htmlFor="sk" className="inline-block mb-1 font-medium">
@@ -302,6 +314,9 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*PDF (max 600 kb)</strong>
+              </p>
             </div>
             <div className="mb-2">
               <label htmlFor="foto_kegiatan" className="inline-block mb-1 font-medium">
@@ -314,8 +329,26 @@ export const FormPeserta = () => {
                 onChange={handleFileChange}
                 className="w-full h-10 px-3 mb-2 transition duration-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:border-deep-purple-accent-400"
               />
+              <p>
+                <strong style={{ color: 'red' }}>*max 600 kb</strong>
+              </p>
             </div>
             <div className="col-span-3 text-center">
+              <div style={
+                {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: '10px'
+                }
+              }>
+                <a href="/form.docx" download style={{
+                  color: 'blue',
+                  textDecoration: 'none',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                }}>Download Form PP 1-4</a>
+              </div>
               <button
                 type="submit"
                 className="inline-flex items-center justify-center w-full h-12 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 bg-blue-500 rounded shadow-md hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"

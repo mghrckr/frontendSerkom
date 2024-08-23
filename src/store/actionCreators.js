@@ -4,6 +4,55 @@ const BASE_URL_ACN = `http://${import.meta.env.VITE_API_URL2}`
 import Swal from 'sweetalert2';
 
 
+export const subscribeUser = (email) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`${BASE_URL}/subscribe`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                alert('Subscribe berhasil! Silakan cek email Anda.');
+                dispatch({ type: 'user/subscribe', payload: email });
+            } else {
+                alert('Gagal melakukan subscribe. Mohon coba lagi.');
+            }
+        } catch (error) {
+            console.error('Error subscribing:', error);
+            alert('Gagal melakukan subscribe. Mohon coba lagi.');
+        }
+    };
+};
+
+export const resetPassword = (resetEmail, newPassword) => {
+    return async (dispatch) => {
+      try {
+        const response = await fetch(`${BASE_URL}/forget`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: resetEmail, newPassword }),
+        });
+  
+        if (response.ok) {
+          Swal.fire('Success', 'Password has been reset successfully', 'success');
+          return true;
+        } else {
+          Swal.fire('Error', 'Failed to reset password', 'error');
+          return false;
+        }
+      } catch (error) {
+        Swal.fire('Error', 'Something went wrong', 'error');
+        return false;
+      }
+    };
+  };
+
 export const formatDate = (isoDate) => {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const date = new Date(isoDate);

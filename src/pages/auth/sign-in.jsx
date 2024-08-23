@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '@/store/actionCreators';
+import { loginUser, resetPassword } from '@/store/actionCreators';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 export const SignIn = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -25,7 +29,7 @@ export const SignIn = () => {
         }).then(() => {
           navigate('/contain/eventPelatihan');
           setTimeout(() => {
-            window.location.reload()
+            window.location.reload();
           }, 200);
         });
       } else {
@@ -40,6 +44,13 @@ export const SignIn = () => {
         text: 'Email or password is incorrect. Please try again.',
         showConfirmButton: true,
       });
+    }
+  };
+
+  const handlePasswordReset = async () => {
+    const success = await dispatch(resetPassword(resetEmail, newPassword));
+    if (success) {
+      setIsModalOpen(false);
     }
   };
 
@@ -61,7 +72,7 @@ export const SignIn = () => {
                 htmlFor="email"
                 className="inline-block mb-1 font-medium"
               >
-                username
+                Username
               </label>
               <input
                 placeholder="example@mail.com"
@@ -99,21 +110,69 @@ export const SignIn = () => {
             </div>
             <hr className="my-6 border-2" />
             <button
-              type="submit"
+              type="button"
               className="mb-2 w-full shadow-lg shadow-brown-800/80 rounded-lg gradient text-white px-4 py-2 text-sm rounded font-medium focus:ring ring-black ring-opacity-10 gradient element-to-rotate"
               style={{ backgroundColor: 'green' }}
-              onClick={() => {
-                navigate('/auth/sign-up');
-              }}
+              onClick={() => navigate('/auth/sign-up')}
             >
               Register
             </button>
-            <p className="text-xs text-gray-600 sm:text-center">
-              We respect your privacy.
-            </p>
+            <button
+              type="button"
+              className="w-full text-sm text-blue-600 mt-4"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Forgot Password?
+            </button>
           </form>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-semibold mb-4">Reset Password</h2>
+            <div className="mb-4">
+              <label htmlFor="resetEmail" className="block text-sm font-medium">
+                Email:
+              </label>
+              <input
+                type="email"
+                id="resetEmail"
+                className="w-full px-4 py-2 border rounded-lg"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="newPassword" className="block text-sm font-medium">
+                New Password:
+              </label>
+              <input
+                type="password"
+                id="newPassword"
+                className="w-full px-4 py-2 border rounded-lg"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-end">
+              <button
+                className="px-4 py-2 bg-gray-300 rounded mr-2"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-blue-600 text-white rounded"
+                onClick={handlePasswordReset}
+              >
+                Reset Password
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

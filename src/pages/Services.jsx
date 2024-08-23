@@ -75,6 +75,20 @@ const Services = () => {
                 TENAGA TEKNIK KETENAGALISTRIKAN
             </Typography>
             <Steps />
+            <div style={
+                {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }
+            }>
+                <a href="/form.docx" download style={{
+                    color: 'blue',
+                    textDecoration: 'none',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                }}>Download Form PP 1-4</a>
+            </div>
         </section>
     );
 }

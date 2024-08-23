@@ -88,6 +88,13 @@ const usersReducer = (state = usersState, actions) => {
         ...state,
         users: [...state.users, actions.payload],
       };
+    case 'user/subscribe':
+      return {
+        ...state,
+        users: state.users.map(user =>
+          user.email === actions.payload ? { ...user, subscribed: true } : user
+        ),
+      };
     default:
       return state;
   }
