@@ -26,7 +26,7 @@ export const FormPeserta = () => {
     Jenjang: '',
     Bidang: '',
     SubBidang: '',
-    batch: selectedBatch || '',
+    batch: '',
     form_pp: null,
     Ktp: null,
     Ijazah: null,
@@ -38,7 +38,7 @@ export const FormPeserta = () => {
     dispatch(fetchUsers());
     dispatch(fetchTrainingEvents());
   }, [dispatch]);
-
+  console.log(selectedTrainingEvent, 'ini batch');
   useEffect(() => {
     if (userId) {
       setFormData((prevData) => ({ ...prevData, UserId: userId }));
@@ -238,9 +238,10 @@ export const FormPeserta = () => {
                 type="text"
                 id="batch"
                 name="batch"
-                readOnly
-                value={selectedBatch ? selectedBatch : ''}
-                className="flex-grow w-full h-10 px-3 mb-2 transition duration-200 bg-gray-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none"
+                // readOnly
+                onChange={handleInputChange}
+                value={formData.batch}
+                className="flex-grow w-full h-10 px-3 mb-2 transition duration-200 bg-white-200 border border-gray-300 rounded shadow-sm appearance-none focus:outline-none"
               />
             </div>
             <div className="mb-2">
